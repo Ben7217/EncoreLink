@@ -27,31 +27,6 @@ public class SplashScreenActivity extends AppCompatActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // Write a message to the database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("user");
-
-    myRef.setValue("Ben");
-
-    myRef.addValueEventListener(new ValueEventListener() {
-
-
-      @Override
-      public void onDataChange(DataSnapshot dataSnapshot) {
-        // This method is called once with the initial value and again
-        // whenever data at this location is updated.
-        String value = dataSnapshot.getValue(String.class);
-        String key = dataSnapshot.getKey();
-        Log.d("Value is: ", value);
-
-      }
-
-      @Override
-      public void onCancelled(DatabaseError error) {
-        // Failed to read value
-        Log.w("Failed to read value.", error.toException());
-      }
-    });
 
     // Set the content of the activity to use the activity_main.xml layout file
     setContentView(R.layout.activity_splash_screen);

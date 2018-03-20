@@ -9,23 +9,23 @@ public class FacilityEntity {
     private String organizationName;
     private String streetAddress;
     private String city;
+    private String state;
     private String zipcode;
     private String contactName;
     private String contactJobTitle;
     private String phoneNumber;
     private String emailAddress;
-    private String userId;
 
-    public FacilityEntity(String userId, String organizationName, String streetAddress, String city, String zipcode, String contactName, String contactJobTitle, String phoneNumber, String emailAddress) {
+    public FacilityEntity(String organizationName, String streetAddress, String city, String state, String zipcode, String contactName, String contactJobTitle, String phoneNumber, String emailAddress) {
         this.organizationName = organizationName;
         this.streetAddress = streetAddress;
         this.city = city;
+        this.state = state;
         this.zipcode = zipcode;
         this.contactName = contactName;
         this.contactJobTitle = contactJobTitle;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
-        this.userId = userId;
     }
 
     public String getOrganizationName() {
@@ -38,6 +38,10 @@ public class FacilityEntity {
 
     public String getCity() {
         return city;
+    }
+
+    public String getState() {
+        return state;
     }
 
     public String getZipcode() {
@@ -60,5 +64,18 @@ public class FacilityEntity {
         return emailAddress;
     }
 
-
+    @Override
+    public String toString() {
+        return "FacilityEntity{" +
+                "organizationName='" + organizationName + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", contactJobTitle='" + contactJobTitle + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
+    }
 }
