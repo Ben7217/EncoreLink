@@ -2,6 +2,8 @@ package com.example.awillis.encorelink;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,9 @@ public class OrganizerProfile extends AppCompatActivity {
     private EditText emailAddress;
     private EditText state;
 
+    private FacilityEntity facilityEntity = new FacilityEntity();
+
+
     private Button persistButton;
 
     private DatabaseReference databaseReference;
@@ -40,13 +45,29 @@ public class OrganizerProfile extends AppCompatActivity {
 
 
         organizationName = findViewById(R.id.organizationName);
+
+
         streetAddress = findViewById(R.id.streetAddress);
+
+
         city = findViewById(R.id.city);
+
+
         state = findViewById(R.id.state);
+
+
         zipCode = findViewById(R.id.zipcode);
+
         contactName = findViewById(R.id.contactName);
+
+
         contactJobTitle = findViewById(R.id.contactJobTitle);
+
+
+
         phoneNumber = findViewById(R.id.phoneNumber);
+
+
         emailAddress = findViewById(R.id.emailAddress);
 
 
@@ -56,9 +77,44 @@ public class OrganizerProfile extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                FacilityEntity facilityEntity = new FacilityEntity(organizationName.getText().toString(), streetAddress.getText().toString(), city.getText().toString(), state.getText().toString(),
-                        zipCode.getText().toString(), contactName.getText().toString(), contactJobTitle.getText().toString(), phoneNumber.getText().toString(), emailAddress.getText().toString());
-                databaseReference.child("organizerProfile").push().setValue(facilityEntity);
+
+
+//                FacilityEntity facilityEntity = new FacilityEntity(organizationName.getText().toString(), streetAddress.getText().toString(), city.getText().toString(), state.getText().toString(),
+//                        zipCode.getText().toString(), contactName.getText().toString(), contactJobTitle.getText().toString(), phoneNumber.getText().toString(), emailAddress.getText().toString());
+
+                facilityEntity.setOrganizationName(organizationName.getText().toString());
+                facilityEntity.setStreetAddress(streetAddress.getText().toString());
+                facilityEntity.setCity(city.getText().toString());
+                facilityEntity.setState(state.getText().toString());
+                facilityEntity.setZipcode(zipCode.getText().toString());
+                facilityEntity.setContactName(contactName.getText().toString());
+                facilityEntity.setContactJobTitle(contactJobTitle.getText().toString());
+                facilityEntity.setPhoneNumber(phoneNumber.getText().toString());
+                facilityEntity.setEmailAddress(emailAddress.getText().toString());
+
+
+
+                if (facilityEntity.getOrganizationName().isEmpty()) {
+                    Toast.makeText(OrganizerProfile.this, "Organization Name is Required.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (facilityEntity.getContactName().isEmpty()) {
+
+                    Toast.makeText(OrganizerProfile.this, "Contact Name is Required.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (facilityEntity.getPhoneNumber().isEmpty()) {
+                    Toast.makeText(OrganizerProfile.this, "Phone number is Required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!PhoneNumberUtils.isWellFormedSmsAddress(facilityEntity.getPhoneNumber())) {
+
+                    Toast.makeText(OrganizerProfile.this, "Not a valid phone number.", Toast.LENGTH_SHORT).show();
+                    return;  
+
+                }
+
+                    databaseReference.child("organizerProfile").push().setValue(facilityEntity);
 
                 Toast.makeText(OrganizerProfile.this, "Saving to Database", Toast.LENGTH_SHORT).show();
 
