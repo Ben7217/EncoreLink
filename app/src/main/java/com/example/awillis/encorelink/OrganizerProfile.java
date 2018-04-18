@@ -110,7 +110,7 @@ public class OrganizerProfile extends AppCompatActivity {
                 if (!PhoneNumberUtils.isWellFormedSmsAddress(facilityEntity.getPhoneNumber())) {
 
                     Toast.makeText(OrganizerProfile.this, "Not a valid phone number.", Toast.LENGTH_SHORT).show();
-                    return;  
+                    return;
 
                 }
 

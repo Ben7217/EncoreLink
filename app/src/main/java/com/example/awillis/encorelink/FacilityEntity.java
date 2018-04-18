@@ -6,6 +6,7 @@ package com.example.awillis.encorelink;
 
 public class FacilityEntity {
 
+    private int id;
     private String organizationName;
     private String streetAddress;
     private String city;
@@ -16,15 +17,48 @@ public class FacilityEntity {
     private String phoneNumber;
     private String emailAddress;
 
-    public FacilityEntity(String organizationName, String streetAddress, String city, String state, String zipcode, String contactName, String contactJobTitle, String phoneNumber, String emailAddress) {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+    public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
+    }
+
+    public void setCity(String city) {
         this.city = city;
+    }
+
+    public void setState(String state) {
         this.state = state;
+    }
+
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public void setContactName(String contactName) {
         this.contactName = contactName;
+    }
+
+    public void setContactJobTitle(String contactJobTitle) {
         this.contactJobTitle = contactJobTitle;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
